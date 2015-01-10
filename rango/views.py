@@ -1,9 +1,13 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse("Link to the About page: <br/> <a href='/rango/about'>About</a>")
+    context_dict = {'boldmessage': 'I am bold font from the context'}
+    return render(request, 'rango/index.html', context_dict)
 
 
 def about(request):
-    return HttpResponse("Link to the Home page: <br/> <a href='/rango/'>Home</a>")
+    context_dict = {'emphasized_message': 'This is italicized!'}
+    return render(request, 'rango/about.html', context_dict)
+

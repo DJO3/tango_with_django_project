@@ -9,6 +9,7 @@
     </head>
     <body>
         <h1>Rango says...hello, world!</h1>
+        <h2>Top 5 Most liked Categories</h2>
         {% if categories %}
             <ul>
                 {% for category in categories %}
@@ -17,6 +18,16 @@
             </ul>
         {% else %}
             <strong>There are no categories to present</strong>
+        {% endif %}
+        <h2>Top 5 Most Viewed Pages</h2>
+        {% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }} - Views: {{ page.views }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no pages to present</strong>
         {% endif %}
         <br/>
         <a href="/rango/about">About</a>

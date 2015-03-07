@@ -2,3 +2,9 @@
 .pyc
 .idea/*
 .ropeproject
+
+*.sqlite3
+
+*.sqlite3
+
+db.sqlite3

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 
@@ -106,7 +106,7 @@ def register(request):
             registered = True
 
             new_user = authenticate(username=request.POST['username'], password=request.POST['password'])
-            login(request, new_user) # automatically logs in new user
+            login(request, new_user)  # automatically logs in new user
 
         else:
             print user_form.errors, profile_form.errors
@@ -132,17 +132,18 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect('/rango/')
             else:
-                return HttpResponse('Your Rango account is currently disabled.')
+                context = {'disabled': 'Your Rango account is currently disabled.'}
+                return render(request, 'rango/login.html', context)
         else:
-            print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("Sorry, username or password did not match!")
+            context = {'failure': 'Sorry, we do not recognize your username or password. Please try logging in again.'}
+            return render(request, 'rango/login.html', context)
     else:
         return render(request, 'rango/login.html', {})
 
 
-@login_required()
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text!")
+    context = {'success': 'You are authenticated!', 'failure': 'You are not logged in!'}
+    return render(request, 'rango/restricted.html', context)
 
 @login_required()
 def user_logout(request):

@@ -7,6 +7,11 @@
 {% block body_block %}
 
     <h1>Login to Rango</h1>
+
+    {{ failure }}
+    {{ disabled }}
+
+    {% if not user.is_authenticated %}
     <form id="login_form" method="post" action={% url "login" %}>
         {% csrf_token %}
         Username: <input type="text" name="username" value="" size="50" />
@@ -15,5 +20,8 @@
         <br />
         <input type="submit" value="submit" />
     </form>
+    {% else %}
+        <p>Looks like you are already logged in. Why not check out another part of the site?</p>
+    {% endif %}
 
 {% endblock %}

@@ -8,3 +8,13 @@
 *.sqlite3
 
 db.sqlite3
+
+*.pyc
+
+*.pyc
+
+tango_with_django_project/settings.pyc
+
+*.pyc
+
+rango/views.pyc

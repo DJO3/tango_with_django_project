@@ -6,10 +6,15 @@
 
 {% block body_block %}
 
-    <p>Check it out, <em>{{ emphasized_message }}</em></p>
+    <div class="page-header">
+        <h1>About</h1>
+    </div>
 
-    <p>You know what else? You've visited our homepage <strong>{{ visits }}</strong> times! We totally track that.</p>
+    <div>
+        <p>Check it out, <em>{{ emphasized_message }}</em></p>
+        <p>You know what else? You've visited our homepage <strong>{{ visits }}</strong> times! We totally track that.</p>
+        <img width="150" height="120" src="{% static "images/rango_about.jpg" %}" alt="About Rango" />
+    </div>
 
-    <img src="{% static "images/rango_about.jpg" %}" alt="About Rango" />
 
 {% endblock %}

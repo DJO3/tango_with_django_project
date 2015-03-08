@@ -6,9 +6,9 @@
 
 {% block body_block %}
 
-    <h1>Add a Category</h1>
+    <h2>Create a new Category</h2>
 
-        <form id="category_form" method="post" action={% url "add_category" %}>
+        <form role="form" id="category_form" method="post" action={% url "add_category" %}>
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
@@ -19,7 +19,8 @@
                 {{ field.help_text }}
                 {{ field }}
             {% endfor %}
-            <input type="submit" name="submit" value="Create Category" />
+            <br />
+            <button class="btn btn-primary" type="submit" name="submit">Add Category</button>
         </form>
 
 {% endblock %}

@@ -6,3 +6,5 @@
 *.sqlite3
 
 
+
+tango_with_django_project/api_keys.py

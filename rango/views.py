@@ -1,9 +1,7 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
 from rango.models import Category, Page
-from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
+from rango.forms import CategoryForm, PageForm
 from datetime import datetime
 from rango.bing_search import run_query
 
@@ -62,7 +60,7 @@ def category(request, category_name_slug):
         context_dict['category_name'] = cat.name
 
         context_dict['category'] = cat
-        pages = Page.objects.filter(category=cat)
+        pages = Page.objects.filter(category=cat).order_by('-views')
         context_dict['pages'] = pages
 
     except Category.DoesNotExist:
@@ -132,3 +130,21 @@ def search(request):
             result_list = run_query(query)
 
     return render(request, 'rango/search.html', {'result_list': result_list})
+
+
+def track_url(request):
+    page_id = None
+    url = '/rango'
+
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views += 1
+                page.save()
+                url = page.url
+            except:
+                pass
+
+    return redirect(url)

@@ -2,6 +2,8 @@
 
 {% load staticfiles %}
 
+{% load static %}
+
 {% block title %}About{% endblock %}
 
 {% block body_block %}
@@ -14,7 +16,10 @@
         <p>Check it out, <em>{{ emphasized_message }}</em></p>
         <p>You know what else? You've visited our homepage <strong>{{ visits }}</strong> times! We totally track that.</p>
         <img width="150" height="120" src="{% static "images/rango_about.jpg" %}" alt="About Rango" />
+
     </div>
 
+    <div id="msg">Hello</div>
+    <button id="about-btn"> Click Me - I'm Javascript on Speed</button>
 
 {% endblock %}

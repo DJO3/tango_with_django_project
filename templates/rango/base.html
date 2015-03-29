@@ -57,9 +57,19 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-                {% block side_block %}
-                {% category_list category %}
-                {% endblock %}
+            <ul class="nav nav-list">
+			    <li class="nav-header">Category Quickfind</li>
+                <form>
+                <label></label>
+                <li><input  class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+                </form>
+		    </ul>
+
+		    <div id="cats">
+		    </div>
+            {% block side_block %}
+            {% category_list category %}
+            {% endblock %}
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -75,8 +85,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script language="JavaScript" type="text/javascript" src="{% static "javascript/jquery.min.js" %}"></script>
     <script language="JavaScript" type="text/javascript" src="{% static "javascript/bootstrap.min.js" %}"></script>
-    <script language="JavaScript" type="text/javascript" src="{% static "javascript/jquery.js" %}"></script>
     <script language="JavaScript" type="text/javascript" src="{% static "javascript/rango-jquery.js" %}"></script>
+    <script language="JavaScript" type="text/javascript" src="{% static "javascript/rango-ajax.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script language="JavaScript" type="text/javascript" src="{% static "javascript/ie10-viewport-bug-workaround.js"%}"></script>
   </body>
